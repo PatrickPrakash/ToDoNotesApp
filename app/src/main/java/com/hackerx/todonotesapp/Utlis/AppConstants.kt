@@ -1,4 +1,4 @@
-package com.hackerx.todonotesapp.Adapter
+package com.hackerx.todonotesapp.Utlis
 
 object AppConstants {
     val FULL_NAME = "full_name"

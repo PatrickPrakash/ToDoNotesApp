@@ -1,4 +1,4 @@
-package com.hackerx.todonotesapp
+package com.hackerx.todonotesapp.Utlis
 
 object PrefConstant {
     val SHARED_PREFRENCES_NAME = "todo_shred_pref"

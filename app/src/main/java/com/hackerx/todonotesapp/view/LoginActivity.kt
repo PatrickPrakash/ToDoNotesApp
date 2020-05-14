@@ -1,4 +1,4 @@
-package com.hackerx.todonotesapp
+package com.hackerx.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.hackerx.todonotesapp.Adapter.AppConstants
+import com.hackerx.todonotesapp.Utlis.AppConstants
+import com.hackerx.todonotesapp.Utlis.PrefConstant
+import com.hackerx.todonotesapp.R
 
 class LoginActivity : AppCompatActivity() {
 
@@ -40,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 val username = editTextusername.text.toString()
                 if(fullname.isNotEmpty() && username.isNotEmpty())
                 {
-                    val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra(AppConstants.FULL_NAME,fullname)
                     startActivity(intent)
                     saveFullName(fullname)

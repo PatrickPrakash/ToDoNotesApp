@@ -1,12 +1,12 @@
-package com.hackerx.todonotesapp
+package com.hackerx.todonotesapp.view
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -15,9 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.hackerx.todonotesapp.Adapter.AppConstants
+import com.hackerx.todonotesapp.Utlis.AppConstants
 import com.hackerx.todonotesapp.Adapter.NotesAdapter
 import com.hackerx.todonotesapp.ClickListener.ItemClickListener
+import com.hackerx.todonotesapp.db  .Notes
+import com.hackerx.todonotesapp.NotesApp
+import com.hackerx.todonotesapp.Utlis.PrefConstant
+import com.hackerx.todonotesapp.R
 
 class MainActivity : AppCompatActivity() {
     private var fullname:String? = ""
@@ -26,19 +30,35 @@ class MainActivity : AppCompatActivity() {
     lateinit var sharedPreferences: SharedPreferences
     var notesArrayList = ArrayList<Notes>()
     val TAG = "Main Activity"
+    val ADD_NOTES_CODE = 100
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         bindViews()
         setupSharedPreferences()
         getIntentData()
+        getDatafromDb()
+        clicklistner()
         supportActionBar?.title = fullname
+        setupRecyclerView()
+    }
+
+    private fun clicklistner() {
         fabNotes.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                setupDialogbox()
+               // setupDialogbox()
+                val intent = Intent(this@MainActivity,AddNotesActivity::class.java)
+                startActivityForResult(intent,ADD_NOTES_CODE)
             }
 
         })
+    }
+
+    private fun getDatafromDb() {
+        val notesApp = applicationContext as NotesApp
+        val notesDao = notesApp.getNotesdb().notesDao()
+        notesArrayList.addAll(notesDao.getAll())
+        Log.d(TAG, notesDao.getAll().toString())
     }
 
     private fun setupDialogbox() {
@@ -56,13 +76,13 @@ class MainActivity : AppCompatActivity() {
                val description = editTexttitle.text.toString()
                if(title.isNotEmpty() && description.isNotEmpty())
                {
-                   val notes = Notes(title, description)
+                   val notes = Notes(title = title, description = description)
                    notesArrayList.add(notes)
+                   addNotestoDb(notes)
                }
                else{
                    Toast.makeText(this@MainActivity,"Title and description Cannot be Empty",Toast.LENGTH_SHORT).show()
                }
-               setupRecyclerView()
                dialog.hide()
            }
 
@@ -70,13 +90,25 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun addNotestoDb(notes: Notes) {
+        val notesApp = applicationContext as NotesApp
+        val notesDao = notesApp.getNotesdb().notesDao()
+        notesDao.insert(notes)
+    }
+
     private fun setupRecyclerView() {
         val itemClickListener = object : ItemClickListener {
             override fun onClick(notes: Notes) {
-                val intent = Intent(this@MainActivity,DetailsActivity::class.java)
+                val intent = Intent(this@MainActivity, DetailsActivity::class.java)
                 intent.putExtra(AppConstants.TITLE,notes.title)
                 intent.putExtra(AppConstants.DESCRIPTION,notes.description)
                 startActivity(intent)
+            }
+
+            override fun onUpdate(notes: Notes) {
+                val notesApp = applicationContext as NotesApp
+                val notesDao = notesApp.getNotesdb().notesDao()
+                notesDao.updateNotes(notes)
             }
 
         }

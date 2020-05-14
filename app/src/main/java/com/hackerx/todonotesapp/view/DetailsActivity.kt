@@ -1,9 +1,10 @@
-package com.hackerx.todonotesapp
+package com.hackerx.todonotesapp.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textview.MaterialTextView
-import com.hackerx.todonotesapp.Adapter.AppConstants
+import com.hackerx.todonotesapp.Utlis.AppConstants
+import com.hackerx.todonotesapp.R
 
 class DetailsActivity : AppCompatActivity(){
     val TAG = "DetailsActivity"

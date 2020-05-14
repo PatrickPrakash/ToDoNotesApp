@@ -15,9 +15,9 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/card_title_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="16dp"
             android:text="Title"
             android:textSize="30dp"
@@ -29,9 +29,9 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/card_desc_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="description"
@@ -41,6 +41,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card_title_text" />
 
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/card_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_desc_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/card_title_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     
