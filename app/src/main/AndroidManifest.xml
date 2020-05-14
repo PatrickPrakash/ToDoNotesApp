@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:requestLegacyExternalStorage="true"
         android:name=".NotesApp"
@@ -21,7 +22,12 @@
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_path"/>
         </provider>
-
+        <service android:name=".Fcm.FirebaseMsgService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
         <activity android:name=".view.AddNotesActivity"></activity>
         <activity android:name=".view.SplashActivity">
             <intent-filter>
@@ -30,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity"></activity>
+        <activity android:name=".view.NotesActivity"></activity>
         <activity android:name=".view.DetailsActivity" />
         <activity android:name=".view.LoginActivity" />
     </application>

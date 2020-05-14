@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "678243510370",
+    "firebase_url": "https://todo-app-757c2.firebaseio.com",
+    "project_id": "todo-app-757c2",
+    "storage_bucket": "todo-app-757c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678243510370:android:335c5e0bb467627337093b",
+        "android_client_info": {
+          "package_name": "com.hackerx.todonotesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678243510370-26kr1cvf3h1bl286eqai52ajlqlnhrod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBtEFJCRliarjG27KXi5u9EJ-LYg77GKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678243510370-26kr1cvf3h1bl286eqai52ajlqlnhrod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

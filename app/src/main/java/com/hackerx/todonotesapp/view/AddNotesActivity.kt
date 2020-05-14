@@ -23,6 +23,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.hackerx.todonotesapp.BuildConfig
 import com.hackerx.todonotesapp.R
+import com.hackerx.todonotesapp.Utlis.AppConstants
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,6 +54,17 @@ class AddNotesActivity : AppCompatActivity() {
                     setupDialog()
                 }
 
+            }
+
+        })
+        submitButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                val intent = Intent()
+                intent.putExtra(AppConstants.TITLE,editTextTitle.text.toString())
+                intent.putExtra(AppConstants.DESCRIPTION,ediTextDescription.text.toString())
+                intent.putExtra(AppConstants.IMAGE_PATH,picture_path)
+                setResult(Activity.RESULT_OK,intent)
+                finish()
             }
 
         })

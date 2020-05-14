@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 val username = editTextusername.text.toString()
                 if(fullname.isNotEmpty() && username.isNotEmpty())
                 {
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent = Intent(this@LoginActivity, NotesActivity::class.java)
                     intent.putExtra(AppConstants.FULL_NAME,fullname)
                     startActivity(intent)
                     saveFullName(fullname)

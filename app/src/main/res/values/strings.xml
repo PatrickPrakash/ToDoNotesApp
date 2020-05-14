@@ -4,4 +4,6 @@
     <string name="full_name">Full Name</string>
     <string name="login">Login</string>
     <string name="add_notes">Add Notes</string>
+    <string name="blog">Blog</string>
+    <string name="blogs">Blogs</string>
 </resources>
