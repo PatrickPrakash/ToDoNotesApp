@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
+import com.hackerx.todonotesapp.OnBoarding.OnBoardingActivity
 import com.hackerx.todonotesapp.Utlis.PrefConstant
 import com.hackerx.todonotesapp.R
 
@@ -35,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
                     val token = task.result?.token
 
                     //Log.d(TAG, "FCM Get token")
-                   // Toast.makeText(baseContext,token, Toast.LENGTH_SHORT).show()
+                   //    Toast.makeText(baseContext,token, Toast.LENGTH_SHORT).show()
                 })
     }
 
@@ -45,12 +46,21 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setupLoginSetup() {
         val isLoggedin = sharedPreferences.getBoolean(PrefConstant.IS_LOGGED_IN,false);
+        val isOnBoarded = sharedPreferences.getBoolean(PrefConstant.ONBOARDED_SUCCESFULLY,false)
         if(isLoggedin) {
             val intent = Intent(this@SplashActivity, NotesActivity::class.java)
             startActivity(intent)
         } else {
-            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
-            startActivity(intent)
+            if(isOnBoarded)
+            {
+                val intent = Intent(this@SplashActivity, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                val intent = Intent(this@SplashActivity, OnBoardingActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }
